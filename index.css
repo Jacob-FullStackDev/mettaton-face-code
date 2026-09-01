@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  background-color: #858366;
+  border: none;
+  padding: 16px;
+  font-size: 50px;
+}
+button:hover {
+  opacity: 0.9;
+  outline: 1px solid #000;
+}
