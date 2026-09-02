@@ -1,16 +1,18 @@
 "use strict";
 const allCells = document.getElementsByClassName("c");
+
 function initialColor() {
   for (const cell of allCells) {
     cell.classList.remove(cell.classList[1]);
-    void document.body.offsetHeight;
+    void cell.offsetHeight;
     cell.classList.add("initial");
   }
 }
+
 function yellow() {
   for (const cell of allCells) {
     cell.classList.remove(cell.classList[1]);
-    void document.body.offsetHeight;
+    void cell.offsetHeight;
     cell.classList.add("yellow");
   }
 }
@@ -18,7 +20,7 @@ function yellow() {
 function blue() {
   for (const cell of allCells) {
     cell.classList.remove(cell.classList[1]);
-    void document.body.offsetHeight;
+    void cell.offsetHeight;
     cell.classList.add("blue");
   }
 }
@@ -26,7 +28,7 @@ function blue() {
 function red() {
   for (const cell of allCells) {
     cell.classList.remove(cell.classList[1]);
-    void document.body.offsetHeight;
+    void cell.offsetHeight;
     cell.classList.add("red");
   }
 }
@@ -43,11 +45,11 @@ function one() {
       cell.id === "c19"
     ) {
       cell.classList.remove(cell.classList[1]);
-      void document.body.offsetHeight;
+      void cell.offsetHeight;
       cell.classList.add("red");
     } else {
       cell.classList.remove(cell.classList[1]);
-      void document.body.offsetHeight;
+      void cell.offsetHeight;
       cell.classList.add("yellow");
     }
   }
@@ -67,11 +69,11 @@ function heart() {
       cell.id === "c20"
     ) {
       cell.classList.remove(cell.classList[1]);
-      void document.body.offsetHeight;
+      void cell.offsetHeight;
       cell.classList.add("yellow");
     } else {
       cell.classList.remove(cell.classList[1]);
-      void document.body.offsetHeight;
+      void cell.offsetHeight;
       cell.classList.add("red");
     }
   }
@@ -92,15 +94,16 @@ function m() {
       cell.id === "c19"
     ) {
       cell.classList.remove(cell.classList[1]);
-      void document.body.offsetHeight;
+      void cell.offsetHeight;
       cell.classList.add("yellow");
     } else {
       cell.classList.remove(cell.classList[1]);
-      void document.body.offsetHeight;
+      void cell.offsetHeight;
       cell.classList.add("red");
     }
   }
 }
+
 let previousResult;
 
 function callRandomScreenFunction() {
@@ -124,7 +127,7 @@ function randomlyChangeScreen() {
       randomlyChangeScreen();
       callRandomScreenFunction();
     },
-    Math.round(Math.random() * 20000) + 5000,
+    Math.round(Math.random() * 10000) + 5000,
   );
 }
 

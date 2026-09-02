@@ -25,6 +25,10 @@ body {
   grid-template-columns: repeat(5, 1fr);
   place-items: center;
 }
+
+.hidden {
+  display: none;
+}
 .c {
   width: 82%;
   height: 82%;
