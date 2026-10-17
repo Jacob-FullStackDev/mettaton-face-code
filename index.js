@@ -1,35 +1,15 @@
 "use strict";
 const allCells = document.getElementsByClassName("c");
 
-function initialColor() {
-  for (const cell of allCells) {
-    cell.classList.remove(cell.classList[1]);
-    void cell.offsetHeight;
-    cell.classList.add("initial");
-  }
+function toggleClassNames(addClass, cell) {
+  cell.classList.remove(cell.classList[1]);
+  void cell.offsetHeight;
+  cell.classList.add(addClass);
 }
-
-function yellow() {
+function changeClassOnAllCells(addClass) {
+  // yellow, yellow--animated, blue--animated, red, red--animated
   for (const cell of allCells) {
-    cell.classList.remove(cell.classList[1]);
-    void cell.offsetHeight;
-    cell.classList.add("yellow");
-  }
-}
-
-function blue() {
-  for (const cell of allCells) {
-    cell.classList.remove(cell.classList[1]);
-    void cell.offsetHeight;
-    cell.classList.add("blue");
-  }
-}
-
-function red() {
-  for (const cell of allCells) {
-    cell.classList.remove(cell.classList[1]);
-    void cell.offsetHeight;
-    cell.classList.add("red");
+    toggleClassNames(addClass, cell);
   }
 }
 
@@ -44,37 +24,9 @@ function one() {
       cell.id === "c18" ||
       cell.id === "c19"
     ) {
-      cell.classList.remove(cell.classList[1]);
-      void cell.offsetHeight;
-      cell.classList.add("red");
+      toggleClassNames("red--animated", cell);
     } else {
-      cell.classList.remove(cell.classList[1]);
-      void cell.offsetHeight;
-      cell.classList.add("yellow");
-    }
-  }
-}
-
-function heart() {
-  for (const cell of allCells) {
-    if (
-      cell.id === "c1" ||
-      cell.id === "c3" ||
-      cell.id === "c5" ||
-      cell.id === "c11" ||
-      cell.id === "c15" ||
-      cell.id === "c16" ||
-      cell.id === "c17" ||
-      cell.id === "c19" ||
-      cell.id === "c20"
-    ) {
-      cell.classList.remove(cell.classList[1]);
-      void cell.offsetHeight;
-      cell.classList.add("yellow");
-    } else {
-      cell.classList.remove(cell.classList[1]);
-      void cell.offsetHeight;
-      cell.classList.add("red");
+      toggleClassNames("yellow--animated", cell);
     }
   }
 }
@@ -93,13 +45,29 @@ function m() {
       cell.id === "c18" ||
       cell.id === "c19"
     ) {
-      cell.classList.remove(cell.classList[1]);
-      void cell.offsetHeight;
-      cell.classList.add("yellow");
+      toggleClassNames("yellow--animated", cell);
     } else {
-      cell.classList.remove(cell.classList[1]);
-      void cell.offsetHeight;
-      cell.classList.add("red");
+      toggleClassNames("red--animated", cell);
+    }
+  }
+}
+
+function heart() {
+  for (const cell of allCells) {
+    if (
+      cell.id === "c1" ||
+      cell.id === "c3" ||
+      cell.id === "c5" ||
+      cell.id === "c11" ||
+      cell.id === "c15" ||
+      cell.id === "c16" ||
+      cell.id === "c17" ||
+      cell.id === "c19" ||
+      cell.id === "c20"
+    ) {
+      toggleClassNames("yellow--animated", cell);
+    } else {
+      toggleClassNames("red--animated", cell);
     }
   }
 }
@@ -107,18 +75,19 @@ function m() {
 let previousResult;
 
 function callRandomScreenFunction() {
-  let funcId = Math.round(Math.random() * 6 + 1);
+  let funcId = Math.round(Math.random() * 7 + 1);
   while (funcId === previousResult) {
-    funcId = Math.round(Math.random() * 6 + 1);
+    funcId = Math.round(Math.random() * 7 + 1);
   }
   previousResult = funcId;
-  if (funcId === 1) initialColor();
-  else if (funcId === 2) yellow();
-  else if (funcId === 3) red();
-  else if (funcId === 4) blue();
-  else if (funcId === 5) heart();
+  if (funcId === 1) changeClassOnAllCells("yellow");
+  else if (funcId === 2) changeClassOnAllCells("yellow--animated");
+  else if (funcId === 3) changeClassOnAllCells("red");
+  else if (funcId === 4) changeClassOnAllCells("red--animated");
+  else if (funcId === 5) changeClassOnAllCells("blue--animated");
   else if (funcId === 6) one();
-  else m();
+  else if (funcId === 7) m();
+  else heart();
 }
 
 function randomlyChangeScreen() {
@@ -127,7 +96,7 @@ function randomlyChangeScreen() {
       randomlyChangeScreen();
       callRandomScreenFunction();
     },
-    Math.round(Math.random() * 20000) + 10000,
+    Math.round(Math.random() * 3000) + 5000,
   );
 }
 
