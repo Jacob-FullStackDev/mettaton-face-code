@@ -1,11 +1,16 @@
 "use strict";
 const allCells = document.getElementsByClassName("c");
+const globalState = {
+  previousResult: 1,
+  currentResult: 1,
+};
 
 function toggleClassNames(addClass, cell) {
   cell.classList.remove(cell.classList[1]);
   void cell.offsetHeight;
   cell.classList.add(addClass);
 }
+
 function changeClassOnAllCells(addClass) {
   // yellow, yellow--animated, blue--animated, red, red--animated
   for (const cell of allCells) {
@@ -71,10 +76,7 @@ function heart() {
     }
   }
 }
-const globalState = {
-  previousResult: 1,
-  currentResult: 1,
-};
+
 function handleAutomaticScreenChange() {
   globalState.previousResult = globalState.currentResult;
   globalState.currentResult = Math.round(Math.random() * 7 + 1);
@@ -110,4 +112,5 @@ function randomlyChangeScreen() {
     (Math.round(Math.random() * 4) + 2) * 1000,
   );
 }
+
 randomlyChangeScreen();
