@@ -41,6 +41,9 @@ body {
   background-color: #d80000;
   box-shadow: inset 8px 8px 10px #600606;
 }
+.error {
+  background-color: rgb(28, 0, 0);
+}
 .yellow--animated {
   background-color: #ffca07;
   box-shadow: inset 8px 8px 10px #9c8019;

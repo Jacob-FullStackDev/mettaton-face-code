@@ -74,16 +74,12 @@ function heart() {
 const globalState = {
   previousResult: 1,
   currentResult: 1,
-  mode: "manual",
-  timer: null,
 };
 function handleAutomaticScreenChange() {
-  if (globalState.mode === "automatic") {
-    globalState.previousResult = globalState.currentResult;
+  globalState.previousResult = globalState.currentResult;
+  globalState.currentResult = Math.round(Math.random() * 7 + 1);
+  while (globalState.currentResult === globalState.previousResult) {
     globalState.currentResult = Math.round(Math.random() * 7 + 1);
-    while (globalState.currentResult === globalState.previousResult) {
-      globalState.currentResult = Math.round(Math.random() * 7 + 1);
-    }
   }
 }
 function callScreenFunction() {
@@ -100,7 +96,7 @@ function callScreenFunction() {
   else if (globalState.currentResult === 7) changeClassOnAllCells("red");
   else if (globalState.currentResult === 8) heart();
   else {
-    heart();
+    changeClassOnAllCells("error");
     console.error("currentResult does not map to a function call");
   }
 }
@@ -111,30 +107,7 @@ function randomlyChangeScreen() {
       callScreenFunction();
       randomlyChangeScreen();
     },
-    Math.round(Math.random() * 5000) + 3000,
+    (Math.round(Math.random() * 4) + 2) * 1000,
   );
 }
-
-const modeToggleEl = document.getElementById("c8");
-function toggleMode() {
-  if (globalState.mode === "automatic") {
-    globalState.mode = "manual";
-    clearTimeout(globalState.timer);
-  } else if (globalState.mode === "manual") {
-    globalState.mode = "automatic";
-    randomlyChangeScreen();
-  }
-}
-modeToggleEl.addEventListener("click", () => {
-  toggleMode();
-});
-document.addEventListener("click", (e) => {
-  if (globalState.mode === "manual" && e.target.id !== "c8") {
-    if (globalState.currentResult < 8) {
-      globalState.currentResult += 1;
-    } else {
-      globalState.currentResult = 1;
-    }
-    callScreenFunction();
-  }
-});
+randomlyChangeScreen();
